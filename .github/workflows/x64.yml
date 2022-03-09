@@ -2,6 +2,7 @@ name: Build OpenWrt for x64 devices
 
 on:
   repository_dispatch:
+  workflow_dispatch:
   release:
     types: [published]
   schedule:
