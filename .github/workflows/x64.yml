@@ -42,13 +42,7 @@ jobs:
           echo "clean space to make code"
           df -h
 
-      - name: Load custom feeds
-        run: |
-          chown $user:$group $DIY_P1_SH 
-          chown $user:$group $DIY_P2_SH
-          chmod +x $DIY_P1_SH && chmod +x $DIY_P2_SH
-          ./$DIY_P1_SH && ./$DIY_P2_SH
-
+    
       - name: Update feeds
         run: |
           ./scripts/feeds update -a
