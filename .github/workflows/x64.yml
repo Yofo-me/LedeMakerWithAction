@@ -109,18 +109,18 @@ jobs:
         if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.YOURTOKEN }}
+          repo_token: ${{ secrets.lede-maker }}
           file: ./artifact/firmware/*
           tag: ${{ github.ref }}
           file_glob: true
 
       - name: Upload firmware to personal server
-        uses: AEnterprise/rsync-deploy@v1.0
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }} # 引用配置，SSH私钥
-          ARGS: -rvp # rsync参数
-          SERVER_PORT: "22" # SSH端口
-          FOLDER: ${{ env.FIRMWARE }}/*
-          SERVER_IP: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名
-          USERNAME: ${{ secrets.SSH_USERNAME }} # 引用配置，服务器登录名
-          SERVER_DESTINATION: /home/yoki/tmp/
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr # rsync参数
+          remote_key: ${{ secrets.DEPLOY_KEY }} # 引用配置，SSH私钥
+          remote_port: "22" # SSH端口
+          path: ${{ env.FIRMWARE }}/*
+          remote_host: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名
+          remote_user: ${{ secrets.SSH_USERNAME }} # 引用配置，服务器登录名
+          remote_path: /home/yoki/tmp/
