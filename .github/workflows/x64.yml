@@ -9,15 +9,6 @@ on:
   release:
     types: [published]
 
-env:
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: x64.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: true
-  UPLOAD_RELEASE: false
-
 jobs:
 
   build_openwrt:
@@ -116,7 +107,7 @@ jobs:
           switches: -avzr # rsync参数
           remote_key: ${{ secrets.DEPLOY_KEY }} # 引用配置，SSH私钥
           remote_port: "22" # SSH端口
-          path: ${{ env.FIRMWARE }}/*
+          path: ./bin/*
           remote_host: ${{ secrets.SSH_HOST }} # 引用配置，服务器的host名
           remote_user: ${{ secrets.SSH_USERNAME }} # 引用配置，服务器登录名
           remote_path: /home/yoki/tmp/
