@@ -45,7 +45,7 @@ jobs:
       - name: Load custom feeds
         run: |
           chmod +x $DIY_P1_SH && chmod +x $DIY_P2_SH
-          ./$DIY_P1_SH || ./$DIY_P2_SH
+          ./$DIY_P1_SH && ./$DIY_P2_SH
 
       - name: Update feeds
         run: |
