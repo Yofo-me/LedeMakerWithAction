@@ -42,7 +42,7 @@ env:
 
 jobs:
   build:
-    runs-on: local-server #use local server to avoid force-suspendantion by  timeout
+    runs-on: VDS-runner #use local server to avoid force-suspendantion by  timeout
     # runs-on: ubuntu-20.04
     # timeout-minutes: 720
 
